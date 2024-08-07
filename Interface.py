@@ -1,12 +1,16 @@
 import tkinter as tk
 from tkinterdnd2 import DND_FILES, TkinterDnD
 from GetRGB import GetRGB
+import threading
+import cv2
 def drop(event):
     # 处理拖放的文件路径
     file_path = event.data
     print("Dropped file:", file_path)
     getrgb=GetRGB(file_path)
     getrgb.get_rgb()
+
+
 
 root = TkinterDnD.Tk()
 root.title("Drag and Drop Example")
