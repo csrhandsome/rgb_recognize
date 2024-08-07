@@ -8,6 +8,7 @@ import sys
 from queue import LifoQueue
 
 class GetRGB:
+    
     def __init__(self, path):
         self.imgqueue=LifoQueue()
         self.cap = cv2.VideoCapture(1)
@@ -16,6 +17,7 @@ class GetRGB:
         self.width=640
         self.height=480
         if os.path.isfile(self.path)==True:
+            print(f'self.path is {self.path}')
             image=cv2.imread(self.path)
             cv2.imshow('RGB', image)
             self.imgqueue.put(image)
@@ -43,11 +45,11 @@ class GetRGB:
 
     def get_rgb(self):
         image = self.imgqueue.get(timeout=1)
-        cv2.imshow('RGB', image)
+        cv2.imshow('color image', image)
         image = image.convert('RGB')
         width, height = image.size
         image = np.array(image)
-        cv2.imshow('RGB', image)
+        cv2.imshow('color image', image)
         for x in range(width):
             for y in range(height):
                 r, g, b = image.getpixel((x, y))
